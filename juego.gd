@@ -42,3 +42,9 @@ func _on_inyeccion_timeout() -> void:
 	inj.position.y = -100
 	inj.position.x = randi_range(1, 20) * 50
 	add_child(inj) # Replace with function body.
+
+
+func _on_timer_timeout() -> void:	
+	emit_signal("_on_label_signal_label")
+
+	

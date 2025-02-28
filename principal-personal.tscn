@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://cks6mfgxxg4y"]
+[gd_scene load_steps=12 format=3 uid="uid://cks6mfgxxg4y"]
 
 [ext_resource type="Script" path="res://juego.gd" id="1_dx2mh"]
 [ext_resource type="Script" path="res://parallax_background.gd" id="6_bwqw3"]
 [ext_resource type="Texture2D" uid="uid://dxkash7b6ydoq" path="res://male.png" id="6_mq6jb"]
+[ext_resource type="Script" path="res://platano.gd" id="7_redfn"]
 [ext_resource type="Texture2D" uid="uid://dnwmyqxjpg88n" path="res://parallax.jpg" id="7_ruqoj"]
 [ext_resource type="Texture2D" uid="uid://bpb6ffevjpt0t" path="res://floor.png" id="8_4s3fm"]
+[ext_resource type="Script" path="res://label.gd" id="8_gvid0"]
 [ext_resource type="Script" path="res://player.gd" id="9_3bkev"]
 [ext_resource type="Script" path="res://rich_text_label.gd" id="13_5u3t5"]
 
@@ -93,6 +95,7 @@ autostart = true
 [node name="Platano" type="Timer" parent="."]
 wait_time = 1.722
 autostart = true
+script = ExtResource("7_redfn")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 189.0
@@ -100,6 +103,7 @@ offset_bottom = 51.0
 theme_override_fonts/font = SubResource("FontFile_e1wm8")
 theme_override_font_sizes/font_size = 50
 text = "Puntos:"
+script = ExtResource("8_gvid0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 offset_left = 160.0
@@ -111,8 +115,13 @@ theme_override_colors/default_color = Color(0.852867, 0, 0.141029, 1)
 text = "HAS SIDO CAPTURADO!!!"
 script = ExtResource("13_5u3t5")
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Inyeccion" to="." method="_on_inyeccion_timeout"]
 [connection signal="timeout" from="Policia3" to="." method="_on_policia__timeout"]
 [connection signal="timeout" from="Melon" to="." method="_on_melon_timeout"]
 [connection signal="timeout" from="Policia2" to="." method="_on_policia_2_timeout"]
 [connection signal="timeout" from="Platano" to="." method="_on_platano_timeout"]
+[connection signal="timeout" from="Platano" to="Label" method="_on_platano_timeout"]
+[connection signal="SignalLabel" from="Label" to="Label" method="_on_signal_label"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
